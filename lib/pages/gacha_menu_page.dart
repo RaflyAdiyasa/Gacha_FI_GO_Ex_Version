@@ -195,30 +195,6 @@ class HomeMenu extends StatelessWidget {
             );
           },
         ),
-        _buildFeatureItem(
-          context,
-          Icons.sports_basketball,
-          'Game One Ball',
-          Colors.purple,
-          () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => EventGamePage()),
-            );
-          },
-        ),
-        _buildFeatureItem(
-          context,
-          Icons.sports_baseball,
-          'Game Two Ball',
-          Colors.blue,
-          () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => AccelerometerGame()),
-            );
-          },
-        ),
       ],
     );
   }

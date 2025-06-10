@@ -14,6 +14,7 @@ class _ProfilePageState extends State<ProfilePage> {
   int _collectionCount = 0;
   final Color _primaryBlack = const Color.fromARGB(255, 255, 255, 255);
   final Color _accentColor = Colors.amber;
+  final Color _accentColor2 = Colors.blue;
 
   @override
   void initState() {
@@ -46,25 +47,103 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: _primaryBlack,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(200),
-        child: AppBar(
-          centerTitle: true,
-          elevation: 0,
-          backgroundColor: const Color.fromARGB(255, 252, 247, 247),
-          flexibleSpace: Stack(
-            fit: StackFit.expand,
+      appBar: AppBar(
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: const Color.fromARGB(255, 252, 247, 247),
+        title: Text(
+          'Tim Profile',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+        ),
+        iconTheme: IconThemeData(color: Colors.black),
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            // Profile 1 - Rafly Adiyasa Putra
+            _buildProfileSection(
+              name: 'Rafly Adiyasa Putra',
+              nim: '123220106',
+              imagePath: 'lib/assets/img/gambar_profile1.jpeg',
+              backgroundImage:
+                  'https://static.atlasacademy.io/NA/CharaGraph/9302590/9302590a.png',
+              message: 'Wajah Aseli Admin',
+              accentColor: _accentColor,
+            ),
+
+            SizedBox(height: 40),
+
+            // Divider between profiles
+            Divider(
+              color: Colors.grey[300],
+              thickness: 2,
+              indent: 50,
+              endIndent: 50,
+            ),
+
+            SizedBox(height: 40),
+
+            // Profile 2 - Tsani Putra Tronchet
+            _buildProfileSection(
+              name: 'Tsani Putra Tronchet',
+              nim: '123220115',
+              imagePath: 'lib/assets/img/gambar_profile2.jpeg',
+              backgroundImage:
+                  'https://static.atlasacademy.io/NA/CharaGraph/9302590/9302590a.png',
+              message: 'Partner in Code',
+              accentColor: _accentColor2,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildProfileSection({
+    required String name,
+    required String nim,
+    required String imagePath,
+    required String backgroundImage,
+    required String message,
+    required Color accentColor,
+  }) {
+    return Column(
+      children: [
+        // Profile Header with Background
+        Container(
+          height: 200,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                blurRadius: 10,
+                offset: Offset(0, 5),
+              ),
+            ],
+          ),
+          child: Stack(
             children: [
-              Image.network(
-                'https://static.atlasacademy.io/NA/CharaGraph/9302590/9302590a.png',
-                fit: BoxFit.cover,
-                color: const Color.fromARGB(
-                  255,
-                  255,
-                  253,
-                  253,
-                ).withOpacity(0.8),
-                colorBlendMode: BlendMode.darken,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.network(
+                  backgroundImage,
+                  height: 200,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                  color: const Color.fromARGB(
+                    255,
+                    255,
+                    253,
+                    253,
+                  ).withOpacity(0.8),
+                  colorBlendMode: BlendMode.darken,
+                ),
               ),
               Align(
                 alignment: Alignment.bottomCenter,
@@ -75,63 +154,66 @@ class _ProfilePageState extends State<ProfilePage> {
                     backgroundColor: _primaryBlack.withOpacity(0.7),
                     child: CircleAvatar(
                       radius: 45,
-                      backgroundImage: AssetImage(
-                        'lib/assets/img/gambar_profile.jpeg',
-                      ),
+                      backgroundImage: AssetImage(imagePath),
                     ),
                   ),
                 ),
               ),
             ],
           ),
-          iconTheme: IconThemeData(color: Colors.white),
         ),
-      ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          children: [
-            SizedBox(height: 40), // Space for the overlapping avatar
-            Text(
-              'Rafly Adiyasa Putra',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: const Color.fromARGB(255, 0, 0, 0),
-              ),
-            ),
-            SizedBox(height: 5),
-            Text(
-              'NIM: 123220106',
-              style: TextStyle(fontSize: 16, color: Colors.grey[400]),
-            ),
-            SizedBox(height: 20),
-            _buildProfileCard(
-              icon: Icons.person,
-              title: 'Username',
-              value: _username,
-            ),
-            SizedBox(height: 10),
-            _buildProfileCard(
-              icon: Icons.credit_card,
-              title: 'Credit Score',
-              value: _credit.toString(),
-            ),
-            SizedBox(height: 10),
-            _buildProfileCard(
-              icon: Icons.collections,
-              title: 'Collection',
-              value: _collectionCount.toString(),
-            ),
-            SizedBox(height: 25),
-            _buildSection(
-              title: 'Pesan',
-              content: 'Wajah Aseli Admin',
-              icon: Icons.message,
-            ),
-          ],
+
+        SizedBox(height: 20),
+
+        // Name and NIM
+        Text(
+          name,
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: const Color.fromARGB(255, 0, 0, 0),
+          ),
         ),
-      ),
+        SizedBox(height: 5),
+        Text(
+          'NIM: $nim',
+          style: TextStyle(fontSize: 16, color: Colors.grey[400]),
+        ),
+
+        SizedBox(height: 20),
+
+        // Profile Cards
+        _buildProfileCard(
+          icon: Icons.person,
+          title: 'Username',
+          value:
+              _username.isNotEmpty
+                  ? _username
+                  : name.split(' ')[0].toLowerCase(),
+          accentColor: accentColor,
+        ),
+        SizedBox(height: 10),
+        _buildProfileCard(
+          icon: Icons.credit_card,
+          title: 'Credit Score',
+          value: _credit.toString(),
+          accentColor: accentColor,
+        ),
+        SizedBox(height: 10),
+        _buildProfileCard(
+          icon: Icons.collections,
+          title: 'Collection',
+          value: _collectionCount.toString(),
+          accentColor: accentColor,
+        ),
+        SizedBox(height: 25),
+        _buildSection(
+          title: 'Pesan',
+          content: message,
+          icon: Icons.message,
+          accentColor: accentColor,
+        ),
+      ],
     );
   }
 
@@ -139,6 +221,7 @@ class _ProfilePageState extends State<ProfilePage> {
     required IconData icon,
     required String title,
     required String value,
+    required Color accentColor,
   }) {
     return Card(
       color: Colors.grey[900],
@@ -148,7 +231,7 @@ class _ProfilePageState extends State<ProfilePage> {
         padding: EdgeInsets.all(16),
         child: Row(
           children: [
-            Icon(icon, color: _accentColor, size: 28),
+            Icon(icon, color: accentColor, size: 28),
             SizedBox(width: 15),
             Expanded(
               child: Column(
@@ -180,6 +263,7 @@ class _ProfilePageState extends State<ProfilePage> {
     required String title,
     required String content,
     required IconData icon,
+    required Color accentColor,
   }) {
     return Card(
       color: Colors.grey[900],
@@ -192,7 +276,7 @@ class _ProfilePageState extends State<ProfilePage> {
           children: [
             Row(
               children: [
-                Icon(icon, color: _accentColor),
+                Icon(icon, color: accentColor),
                 SizedBox(width: 10),
                 Text(
                   title,

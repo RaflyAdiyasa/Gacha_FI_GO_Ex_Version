@@ -36,14 +36,14 @@ class ProfilePageDouble extends StatelessWidget {
                 _buildProfileCard(
                   context,
                   'Rafly Adiyasa Putra',
-                  'Flutter Developer',
-                  'Mahasiswa Teknik Informatika yang passionate dalam pengembangan mobile app. Suka kopi dan tantangan coding yang kompleks.',
+                  'Linux User',
+                  'Mahasiswa Teknik Informatika yang passionate dalam pengembangan app. Suka kopi dan tantangan coding yang kompleks.',
                   Icons.person,
                   Colors.blue,
                   [
                     {
                       'label': 'Email',
-                      'value': 'raflyadiyasa@blmail.com',
+                      'value': 'raflyadiyasa@gmail.com',
                       'icon': Icons.email,
                     },
                     {
@@ -51,11 +51,7 @@ class ProfilePageDouble extends StatelessWidget {
                       'value': '+62 812-3456-7890',
                       'icon': Icons.phone,
                     },
-                    {
-                      'label': 'Skill',
-                      'value': 'Flutter, Dart',
-                      'icon': Icons.code,
-                    },
+                    {'label': 'Skill', 'value': 'Linux', 'icon': Icons.code},
                   ],
                 ),
                 SizedBox(height: 20),
@@ -64,7 +60,7 @@ class ProfilePageDouble extends StatelessWidget {
                 _buildProfileCard(
                   context,
                   'Muhamad Tsani Putra Tronchet',
-                  'All Round AR',
+                  'Backend Developer',
                   'Mahasiswa pemalas yang ngoding h-1 deadline',
                   Icons.person_outline,
                   Colors.blue,
@@ -81,7 +77,8 @@ class ProfilePageDouble extends StatelessWidget {
                     },
                     {
                       'label': 'Skill',
-                      'value': 'HTML only',
+                      'value':
+                          'JS , API REST , POSTMAN , NODE.js , NEXT.js , React.js , Golang',
                       'icon': Icons.design_services,
                     },
                   ],

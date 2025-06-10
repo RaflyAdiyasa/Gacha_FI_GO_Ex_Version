@@ -26,7 +26,7 @@ class User {
     required this.id,
     required this.username,
     required this.password,
-    this.credit = 30000,
+    this.credit = 300,
     List<String>? collection,
     List<String>? favoriteCards,
   }) : collection = collection ?? [],
