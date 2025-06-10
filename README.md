@@ -1,16 +1,12 @@
 # gachafigo
 
-A new Flutter project.
+Aplikasi tiruan FGO , untuk melakukan gacha Card / CE (craft essence) . Gacha sepuasnya untuk menadapatkan CE bintang lima dan Koleksi kartu tersebut
 
-## Getting Started
+## Para Pekerja :
 
-This project is a starting point for a Flutter application.
+### Rafly Adiyasa Putra
+NIM : 123220106
 
-A few resources to get you started if this is your first Flutter project:
+### Muhamad Tsani Putra Tronchet
+NIM : 123220115
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
