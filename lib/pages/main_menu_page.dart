@@ -277,7 +277,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
       case 2:
         return GachaHistoryPage();
       case 3:
-        return SuggestionsPage();
+        return ProfilePageDouble();
       default:
         return Center(child: Text('Coming Soon'));
     }

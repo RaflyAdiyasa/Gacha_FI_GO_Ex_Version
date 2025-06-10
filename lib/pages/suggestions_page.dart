@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SuggestionsPage extends StatelessWidget {
+class ProfilePageDouble extends StatelessWidget {
   final Color _primaryColor = Color.fromARGB(179, 205, 194, 255);
   final Color _accentColor = Color(0xFF0D47A1);
 
@@ -9,12 +9,12 @@ class SuggestionsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Saran dan Kesan',
+          'Profile Tim',
           style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
         ),
         backgroundColor: Colors.white,
         elevation: 0,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.black),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -29,45 +29,67 @@ class SuggestionsPage extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Card(
-            elevation: 8,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildSection(
-                      context,
-                      'Overall Experience',
-                      Icons.star,
-                      'Memorable',
-                      Colors.amber,
-                    ),
-                    _buildSection(
-                      context,
-                      'Keterangan Tambahan',
-                      Icons.note,
-                      'Hidup menantang penuh dengan kopi , enak',
-                      _accentColor,
-                    ),
-                    _buildSection(
-                      context,
-                      'Saran untuk Pengembangan',
-                      Icons.lightbulb,
-                      'Cih kurang menantang, hmmmpph !!\n'
-                          'Harusnya buat app untuk Smartwatch, need more cafeiine',
-
-                      Colors.red,
-                    ),
-                    SizedBox(height: 30),
-                    _buildThankYouSection(),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                // Profile Card 1
+                _buildProfileCard(
+                  context,
+                  'Rafly Adiyasa Putra',
+                  'Flutter Developer',
+                  'Mahasiswa Teknik Informatika yang passionate dalam pengembangan mobile app. Suka kopi dan tantangan coding yang kompleks.',
+                  Icons.person,
+                  Colors.blue,
+                  [
+                    {
+                      'label': 'Email',
+                      'value': 'raflyadiyasa@blmail.com',
+                      'icon': Icons.email,
+                    },
+                    {
+                      'label': 'Phone',
+                      'value': '+62 812-3456-7890',
+                      'icon': Icons.phone,
+                    },
+                    {
+                      'label': 'Skill',
+                      'value': 'Flutter, Dart',
+                      'icon': Icons.code,
+                    },
                   ],
                 ),
-              ),
+                SizedBox(height: 20),
+
+                // Profile Card 2
+                _buildProfileCard(
+                  context,
+                  'Muhamad Tsani Putra Tronchet',
+                  'All Round AR',
+                  'Mahasiswa pemalas yang ngoding h-1 deadline',
+                  Icons.person_outline,
+                  Colors.blue,
+                  [
+                    {
+                      'label': 'Email',
+                      'value': 'tsani@cmail.com',
+                      'icon': Icons.email,
+                    },
+                    {
+                      'label': 'Phone',
+                      'value': '+62 821-9876-5432',
+                      'icon': Icons.phone,
+                    },
+                    {
+                      'label': 'Skill',
+                      'value': 'HTML only',
+                      'icon': Icons.design_services,
+                    },
+                  ],
+                ),
+
+                SizedBox(height: 30),
+                _buildTeamSection(),
+              ],
             ),
           ),
         ),
@@ -75,66 +97,153 @@ class SuggestionsPage extends StatelessWidget {
     );
   }
 
-  Widget _buildSection(
+  Widget _buildProfileCard(
     BuildContext context,
-    String title,
-    IconData icon,
-    String content,
-    Color color,
+    String name,
+    String role,
+    String description,
+    IconData avatarIcon,
+    Color themeColor,
+    List<Map<String, dynamic>> contactInfo,
   ) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 25.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(icon, color: color, size: 24),
-              SizedBox(width: 8),
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: _accentColor,
+    return Card(
+      elevation: 8,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            // Avatar and basic info
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 40,
+                  backgroundColor: themeColor.withOpacity(0.2),
+                  child: Icon(avatarIcon, size: 40, color: themeColor),
                 ),
-              ),
-            ],
-          ),
-          SizedBox(height: 12),
-          Container(
-            padding: EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 5,
-                  offset: Offset(0, 2),
+                SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        name,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: _accentColor,
+                        ),
+                      ),
+                      SizedBox(height: 4),
+                      Text(
+                        role,
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: themeColor,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
-            child: Text(content, style: TextStyle(fontSize: 16, height: 1.5)),
+
+            SizedBox(height: 16),
+
+            // Description
+            Container(
+              padding: EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.grey[50],
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                description,
+                style: TextStyle(
+                  fontSize: 14,
+                  height: 1.4,
+                  color: Colors.grey[700],
+                ),
+              ),
+            ),
+
+            SizedBox(height: 16),
+
+            // Contact information
+            ...contactInfo
+                .map(
+                  (info) => _buildContactItem(
+                    info['icon'],
+                    info['label'],
+                    info['value'],
+                    themeColor,
+                  ),
+                )
+                .toList(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildContactItem(
+    IconData icon,
+    String label,
+    String value,
+    Color color,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: Row(
+        children: [
+          Icon(icon, size: 18, color: color),
+          SizedBox(width: 12),
+          Text(
+            '$label: ',
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              color: Colors.grey[700],
+            ),
+          ),
+          Expanded(
+            child: Text(value, style: TextStyle(color: Colors.grey[800])),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildThankYouSection() {
-    return Center(
-      child: Column(
-        children: [
-          Text(
-            'Terima kasih atas pengajarannya!',
-            style: TextStyle(
-              fontSize: 18,
-              fontStyle: FontStyle.italic,
-              color: _accentColor,
+  Widget _buildTeamSection() {
+    return Card(
+      elevation: 6,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            Icon(Icons.group, size: 40, color: _accentColor),
+            SizedBox(height: 12),
+            Text(
+              'Tim Pengembang',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: _accentColor,
+              ),
             ),
-          ),
-        ],
+            SizedBox(height: 8),
+            Text(
+              'Kami adalah tim yang berdedikasi untuk menciptakan aplikasi mobile yang inovatif dan user-friendly.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey[600],
+                height: 1.4,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
