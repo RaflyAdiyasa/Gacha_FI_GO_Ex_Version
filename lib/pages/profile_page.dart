@@ -69,7 +69,7 @@ class _ProfilePageState extends State<ProfilePage> {
             _buildProfileSection(
               name: 'Rafly Adiyasa Putra',
               nim: '123220106',
-              imagePath: 'lib/assets/img/gambar_profile1.jpeg',
+              imageUrl: 'https://avatars.githubusercontent.com/u/1?v=4',
               backgroundImage:
                   'https://static.atlasacademy.io/NA/CharaGraph/9302590/9302590a.png',
               message: 'Wajah Aseli Admin',
@@ -92,7 +92,7 @@ class _ProfilePageState extends State<ProfilePage> {
             _buildProfileSection(
               name: 'Tsani Putra Tronchet',
               nim: '123220115',
-              imagePath: 'lib/assets/img/gambar_profile2.jpeg',
+              imageUrl: 'https://avatars.githubusercontent.com/u/2?v=4',
               backgroundImage:
                   'https://static.atlasacademy.io/NA/CharaGraph/9302590/9302590a.png',
               message: 'Partner in Code',
@@ -107,7 +107,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget _buildProfileSection({
     required String name,
     required String nim,
-    required String imagePath,
+    required String imageUrl,
     required String backgroundImage,
     required String message,
     required Color accentColor,
@@ -154,7 +154,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     backgroundColor: _primaryBlack.withOpacity(0.7),
                     child: CircleAvatar(
                       radius: 45,
-                      backgroundImage: AssetImage(imagePath),
+                      backgroundImage: NetworkImage(imageUrl),
+                      onBackgroundImageError: (exception, stackTrace) {
+                        // Handle image loading error
+                        print('Error loading profile image: $exception');
+                      },
                     ),
                   ),
                 ),
